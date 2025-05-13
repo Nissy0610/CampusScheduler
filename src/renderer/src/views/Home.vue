@@ -1,12 +1,11 @@
 <template>
-    <div class="w-full" id="wrapper">
-        <div class="w-3/4" id="watch">
-            <h2 class="text-[4vw] text-center">
-                {{ date }}
-            </h2>
-            <h1 class="text-[8vw] text-center">
-                {{ time }}
-            </h1>
+    <div class="w-full h-full flex" id="wrapper">
+        <div class="w-3/4" id="left">
+            <!-- 時計 -->
+             <Watch />
+        </div>
+        <div class="w-1/4 bg-amber-200" id="right">
+
         </div>
     </div>
     <!-- フッター -->
@@ -20,25 +19,6 @@
 
     //コンポーネント読み込み
     import Footer from '../components/Footer.vue'
+    import Watch from '../components/Pages/Home/Watch.vue'
 
-    //変数の設定
-    const date = ref('')
-    const time = ref('')
-    
-    //日付計算
-    const Dates = () => {
-        return format(new Date(), 'yyyy年MM月dd日')
-    }
-
-    //時間部分の計算
-    const Times = () => {
-        return format(new Date(), 'HH時mm分ss秒')
-    }
-
-    onMounted(() => {
-        setInterval(() => {
-            date.value = Dates()
-            time.value = Times()
-        }, 100)
-    })
 </script>

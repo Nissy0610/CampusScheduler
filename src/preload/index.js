@@ -1,4 +1,4 @@
-import { contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
@@ -18,3 +18,8 @@ if (process.contextIsolated) {
   window.electron = electronAPI
   window.api = api
 }
+
+//設定ファイルの操作
+contextBridge.exposeInMainWorld('configAPI', {
+  getConfig: ( name ) => ipcRenderer.invoke('getConfig', name),
+})

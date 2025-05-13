@@ -22,6 +22,7 @@
     "@electron-toolkit/utils": "^4.0.0",
     "@tailwindcss/vite": "^4.1.6",
     "date-fns": "^4.1.0",
+    "electron-store": "^10.0.1",
     "tailwindcss": "^4.1.6",
     "vue-router": "^4.5.1"
   },

@@ -1,5 +1,5 @@
 <template>
-    <footer class="fixed bottom-0 h-10 w-full flex items-center">
+    <footer class="fixed bottom-0 h-10 w-full flex items-center bg-white border-t-gray-300 border-t-1">
         <ul class="flex pl-6 ">
             <li id="footer_menu" :class="onPage == 1 ? 'onPage':'' ">
                 <router-link to="/">
@@ -9,6 +9,11 @@
             <li id="footer_menu" :class="onPage == 2 ? 'onPage':'' ">
                 <router-link to="/Calendar">
                     Calender
+                </router-link>
+            </li>
+            <li id="footer_menu" :class="onPage == 3 ? 'onPage':'' ">
+                <router-link to="/Setting">
+                    Setting
                 </router-link>
             </li>
         </ul>
