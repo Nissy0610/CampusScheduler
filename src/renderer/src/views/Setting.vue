@@ -28,16 +28,15 @@
     import Footer from '../components/Footer.vue'
     import Input from '../components/parts/Input.vue'
 
-    //変数を定義
-    const fontColor = ref('')
-
+    //const fontColor = ref("")
     //設定を取得
 
     onMounted( async () => {
+        //font_color.value = await window.configAPI.getConfig('fontColor')
+        const fontColor = ref("")
         fontColor.value = await window.configAPI.getConfig('fontColor')
-        //fontColor.value = "hoge"
+        
     })
 
     console.log(fontColor.value)
-
 </script>
