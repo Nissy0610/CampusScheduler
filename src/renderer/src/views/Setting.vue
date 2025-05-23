@@ -28,15 +28,13 @@
     import Footer from '../components/Footer.vue'
     import Input from '../components/parts/Input.vue'
 
-    //const fontColor = ref("")
-    //設定を取得
+    const fontColor = ref("")
 
-    onMounted( async () => {
-        //font_color.value = await window.configAPI.getConfig('fontColor')
-        const fontColor = ref("")
-        fontColor.value = await window.configAPI.getConfig('fontColor')
-        
-    })
+    //設定を取得
+    const getConfig = async ( config ) => {
+        return await window.configAPI.getConfig(config)
+    }
+    fontColor.value = getConfig("fontColor")
 
     console.log(fontColor.value)
 </script>
