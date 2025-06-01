@@ -32,9 +32,11 @@
     let fontColor 
 
     //設定を取得
-    const getConfig = async ( config ) => {
-        return await window.configAPI.getConfig(config)
+    const getConfig = ( config ) => {
+        return window.configAPI.getConfig(config)
     }
-
     
+    fontColor = getConfig('fontColor')
+    
+    console.log(fontColor)
 </script>
