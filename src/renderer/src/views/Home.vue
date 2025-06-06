@@ -4,8 +4,10 @@
             <!-- 時計 -->
              <Watch />
         </div>
-        <div class="w-1/4 bg-amber-200" id="right">
-
+        <div class="w-1/4" id="right">
+            <Timeline color="white">
+                プロNβ
+            </Timeline>
         </div>
     </div>
     <!-- フッター -->
@@ -20,5 +22,6 @@
     //コンポーネント読み込み
     import Footer from '../components/Footer.vue'
     import Watch from '../components/Pages/Home/Watch.vue'
+    import Timeline from '../components/Pages/Home/Timeline.vue'
 
 </script>
