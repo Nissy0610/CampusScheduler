@@ -4,11 +4,13 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Home from './views/Home.vue'
 import Calendar from "./views/Calendar.vue"
 import Setting from "./views/Setting.vue"
+import TimeTable from "./views/TimeTable.vue";
 
 //リンク一覧
 const routes = [
     { path: '/', component: Home },
     { path: '/Calendar', component: Calendar },
+    { path: '/TimeTable', component: TimeTable},
     { path: '/Setting', component: Setting },
 ]
 

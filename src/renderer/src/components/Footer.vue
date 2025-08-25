@@ -12,6 +12,11 @@
                 </router-link>
             </li>
             <li id="footer_menu" :class="onPage == 3 ? 'onPage':'' ">
+                <router-link to="/TimeTable">
+                    TimeTable
+                </router-link>
+            </li>
+            <li id="footer_menu" :class="onPage == 4 ? 'onPage':'' ">
                 <router-link to="/Setting">
                     Setting
                 </router-link>

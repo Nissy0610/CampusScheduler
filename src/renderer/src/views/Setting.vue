@@ -24,7 +24,7 @@
             </Button>
         </div>
     </main>
-    <Footer onPage="3" />
+    <Footer onPage="4" />
 </template>
 
 <script setup>

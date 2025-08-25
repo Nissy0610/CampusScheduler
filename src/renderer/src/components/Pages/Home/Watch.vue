@@ -3,7 +3,7 @@
         <h2 class="text-[4vw] text-center">
             {{ date }}
         </h2>
-        <h1 class="text-[10vw] text-center font-black">
+        <h1 class="text-[10vw] text-center font-black leading-none">
             {{ time }}
         </h1>
     </div>

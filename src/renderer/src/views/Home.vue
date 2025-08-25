@@ -4,10 +4,21 @@
             <!-- 時計 -->
              <Watch />
         </div>
-        <div class="w-1/4" id="right">
-            <Timeline color="white">
+        <div class="w-1/4 box-border" id="right">
+            <Timeline color="white" time="11:45~12:35">
                 プロNβ
             </Timeline>
+            <Timeline color="white" time="11:45~12:35">
+                プロNβ
+            </Timeline>
+            <div class="flex w-full justify-center">
+                <Timeline color="white" time="13:15~14:05">
+                    Hoge
+                </Timeline>
+                <Timeline color="white" time="13:15~14:05">
+                    Piyo
+                </Timeline>
+            </div>
         </div>
     </div>
     <!-- フッター -->

@@ -1,6 +1,9 @@
 <template>
-    <div class="m-2 h-16 rounded-xl text-2xl  text-center text-white" id="timeline">
-        <slot></slot>
+    <div class="m-1 h-16 rounded-xl text-center text-white block w-full box-content " id="timeline">
+        <h2 class="text-2xl">
+            <slot></slot>
+        </h2>
+        {{ time }}
     </div>
 </template>
 
@@ -15,6 +18,10 @@
             type: String,
             required: false,
             default: '#333'
+        },
+        time: {
+            type: String,
+            required: true,
         }
     })
 </script>
