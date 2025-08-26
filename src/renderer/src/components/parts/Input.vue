@@ -24,11 +24,15 @@
 </script>
 
 <style scoped>
-    .md {
+    input {
+        min-width: 200px;
+    }
+
+    /*.md {
         width: 200px;
     }
 
     .full {
         width: 100%;
-    }
+    }*/
 </style>

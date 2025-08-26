@@ -6,6 +6,9 @@
 
 <script setup>
     import Footer from './components/Footer.vue';
+
+    //選択できないようにする
+    document.onselectstart = () => false
 </script>
 
 <style scoped>

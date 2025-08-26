@@ -11,16 +11,13 @@
             <Timeline color="white" time="11:45~12:35">
                 プロNβ
             </Timeline>
-            <div class="flex w-full justify-center">
-                <Timeline color="white" time="13:15~14:05">
-                    Hoge
-                </Timeline>
-                <Timeline color="white" time="13:15~14:05">
-                    Piyo
-                </Timeline>
-            </div>
+            <input type="submit" value="表示" @click="modal = !modal" />
         </div>
     </div>
+    <BigModal v-model="modal">
+        <h2>ほげげ</h2>
+        <p>桐藤ナギサのガチャ寝落ちで引けずばにたす</p>
+    </BigModal>
     <!-- フッター -->
     <Footer onPage="1"/>
 </template>
@@ -32,7 +29,11 @@
 
     //コンポーネント読み込み
     import Footer from '../components/Footer.vue'
+    import BigModal from '../components/parts/BigModal.vue';
     import Watch from '../components/Pages/Home/Watch.vue'
     import Timeline from '../components/Pages/Home/Timeline.vue'
+
+    //変数定義
+    const modal = ref(false)
 
 </script>
