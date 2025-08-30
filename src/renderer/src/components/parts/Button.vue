@@ -63,4 +63,9 @@
         padding: 15px 24px;
         font-size: 16px;
     }
+
+    /* 無効時 */
+    button:disabled {
+        background-color: #ccc;
+    }
 </style>

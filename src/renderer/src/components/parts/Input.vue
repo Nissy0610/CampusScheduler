@@ -28,6 +28,10 @@
         min-width: 200px;
     }
 
+    input:disabled {
+        background-color: #ccc;
+    }
+
     /*.md {
         width: 200px;
     }

@@ -5,6 +5,12 @@
     />
 </template>
 
+<style scoped>
+    input:disabled {
+        background-color: #ccc;
+    }
+</style>
+
 <script setup>
     //v-modelの設定
     const model = defineModel()

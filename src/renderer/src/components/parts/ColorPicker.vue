@@ -3,6 +3,7 @@
         type="color"
         class="h-8 w-8"
         id="color"
+        :disabled="isable"
         v-model="model"
     />
     <label for="color" class="text-sm">
@@ -10,6 +11,11 @@
     </label>
 </template>
 
+<style scoped>
+    input:disabled {
+        display: none;
+    }
+</style>
 <script setup>
     //ライブラリ読み込み
     import { ref } from 'vue'
@@ -23,6 +29,11 @@
             type: String,
             required: false,
             default: '色を選択'
+        },
+        isable: {
+            type: Boolean,
+            required: false,
+            default: false
         }
     })
 
