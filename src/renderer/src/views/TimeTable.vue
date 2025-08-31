@@ -7,7 +7,7 @@
     </header>
     <!-- メイン -->
      <main class="h-full">
-        <div class="h-full flex" id="time_table">
+        <div class="h-min-full flex" id="time_table">
             <!-- 時間割表 -->
             <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
@@ -16,7 +16,7 @@
                 <Button class="w-10/11" @click="openAddWindow(1)">
                     追加
                 </Button>
-                <List />
+                <List v-model="changeCheck" day="月曜日" />
             </div>
             <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
@@ -25,6 +25,7 @@
                 <Button class="w-10/11" @click="openAddWindow(2)">
                     追加
                 </Button>
+                <List v-model="changeCheck" day="火曜日" />
             </div>
             <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
@@ -33,6 +34,7 @@
                 <Button class="w-10/11" @click="openAddWindow(3)">
                     追加
                 </Button>
+                <List v-model="changeCheck" day="水曜日" />
             </div>
             <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
@@ -41,6 +43,7 @@
                 <Button class="w-10/11" @click="openAddWindow(4)">
                     追加
                 </Button>
+                <List v-model="changeCheck" day="木曜日" />
             </div>
             <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
@@ -49,14 +52,16 @@
                 <Button class="w-10/11" @click="openAddWindow(5)">
                     追加
                 </Button>
+                <List v-model="changeCheck" day="金曜日" />
             </div>
             <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
                     土曜日
                 </h3>
-                <Button class="w-10/11" @click="openAddWindow(16)">
+                <Button class="w-10/11" @click="openAddWindow(6)">
                     追加
                 </Button>
+                <List v-model="changeCheck" day="土曜日" />
             </div>
             <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
@@ -65,6 +70,7 @@
                 <Button class="w-10/11" @click="openAddWindow(7)">
                     追加
                 </Button>
+                <List v-model="changeCheck" day="日曜日" />
             </div>
         </div>
         <!-- 時間割の追加画面 -->
@@ -209,6 +215,7 @@
     const isAbleAddSecond = ref(false)
     const firstData = ref(["", "", "", "#DC143C", "white", ""])
     const secondData = ref(["", "none", "none", "#DC143C", "white", ""])
+    const changeCheck = ref(true)
     
     //時間割の追加ウィンドウを開く
     const openAddWindow = (day) => {
@@ -230,6 +237,7 @@
         let newData = {}
         //一つ目の時間のフォームデータ
         const first_json = {
+            "id": data.length,
             "name": firstData.value[0],
             "day": week.value,
             "time": {
@@ -271,9 +279,11 @@
         } catch(err) {
             console.log(err)
         }
-        console.log(getTimeTable())
         //モーダルを閉じる
         view_add.value = false
+        //変更を通達
+        changeCheck.value = !changeCheck.value
+        console.log(changeCheck.value)
     }
 
     //時間割を取得

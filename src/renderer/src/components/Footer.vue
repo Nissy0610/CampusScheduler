@@ -22,6 +22,9 @@
                 </router-link>
             </li>
         </ul>
+        <small class="ml-auto pr-4">
+            CampusScheduler
+        </small>
     </footer>
 </template>
 
