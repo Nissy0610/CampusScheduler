@@ -12,7 +12,7 @@
                     {{ list[1].name }}
                 </h3>
                 {{ list[1].time.start + '~' + list[1].time.end + "　教室：" + list[1].room }}
-                
+                <input type="submit" class="block m-auto font-bold" :style="{ color: list[1].color }" value="変更" @click="customSchedule(list[1].id, 1)" />
             </div>
         </div>
         <!-- 授業2つ目 -->
@@ -24,6 +24,7 @@
                     {{ list[2].name }}
                 </h3>
                 {{ list[2].time.start + '~' + list[2].time.end + "　教室：" + list[2].room }}
+                <input type="submit" class="block m-auto font-bold" :style="{ color: list[2].color }" value="変更" @click="customSchedule(list[1].id, 2)" />
             </div>
         </div>
     </div>
@@ -31,7 +32,9 @@
 </template>
 
 <style scoped>
-
+    input[type="submit"]:hover {
+        border-bottom: solid 1px white;
+    }
 </style>
 
 <script setup>
@@ -57,6 +60,7 @@
         try {
             let data = await window.timeTableAPI.getTimeTable()
             data = data.filter(item => item[1].day === props.day)
+            data = data.filter(item => item["isDelete"] === false)
             return data
         } catch(err) {
             console.log(err)
@@ -72,4 +76,11 @@
     watch(isChanged, async () => {
         listData.value = await getTimeTable()
     })
+
+    //設定変更のemitを定義
+    const emit = defineEmits(['customSchedule'])
+
+    const customSchedule = (id, no) => {
+        emit('customSchedule', id, no)
+    }
 </script>

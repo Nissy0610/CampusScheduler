@@ -13,6 +13,7 @@
     //ライブラリの読み込み
     import { ref, onMounted } from 'vue'
     import { format } from 'date-fns'
+    import { ja } from 'date-fns/locale'
 
     //変数の設定
     const date = ref('')
@@ -20,7 +21,7 @@
     
     //日付計算
     const Dates = () => {
-        return format(new Date(), 'yyyy年MM月dd日')
+        return format(new Date(), 'yyyy年MM月dd日(E曜日)', {locale: ja})
     }
 
     //時間部分の計算
