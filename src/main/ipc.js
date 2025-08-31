@@ -15,3 +15,16 @@ ipcMain.handle('getConfig', ( _event, name ) => {
         return store.get(name)
     }
 })
+
+// ==時間割==
+// 時間割読み込み
+ipcMain.handle('getTimeTable', ( _event ) => {
+    const store = new Store({ name: "timeTable" })
+    return store.get('timeTable', [])
+})
+
+//時間割を設定
+ipcMain.handle('setTimeTable', ( _event, data ) => {
+    const store = new Store({ name: "timeTable" })
+    store.set('timeTable', data)
+})

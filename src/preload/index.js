@@ -23,3 +23,9 @@ if (process.contextIsolated) {
 contextBridge.exposeInMainWorld('configAPI', {
   getConfig: ( name ) => ipcRenderer.invoke('getConfig', name),
 })
+
+//時間割ファイルの操作
+contextBridge.exposeInMainWorld('timeTableAPI', {
+  getTimeTable: () => ipcRenderer.invoke('getTimeTable'),
+  setTimeTable: ( data ) => ipcRenderer.invoke('setTimeTable', data),
+})

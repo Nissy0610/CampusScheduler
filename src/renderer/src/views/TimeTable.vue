@@ -16,36 +16,55 @@
                 <Button class="w-10/11" @click="openAddWindow(1)">
                     追加
                 </Button>
+                <List />
             </div>
-            <div class="min-w-1/5 h-full border-r-1 border-gray-300" id="time_table_item">
+            <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
                     火曜日
                 </h3>
+                <Button class="w-10/11" @click="openAddWindow(2)">
+                    追加
+                </Button>
             </div>
-            <div class="min-w-1/5 h-full border-r-1 border-gray-300" id="time_table_item">
+            <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
                     水曜日
                 </h3>
+                <Button class="w-10/11" @click="openAddWindow(3)">
+                    追加
+                </Button>
             </div>
-            <div class="min-w-1/5 h-full border-r-1 border-gray-300" id="time_table_item">
+            <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
                     木曜日
                 </h3>
+                <Button class="w-10/11" @click="openAddWindow(4)">
+                    追加
+                </Button>
             </div>
-            <div class="min-w-1/5 h-full border-r-1 border-gray-300" id="time_table_item">
+            <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
                     金曜日
                 </h3>
+                <Button class="w-10/11" @click="openAddWindow(5)">
+                    追加
+                </Button>
             </div>
-            <div class="min-w-1/5 h-full border-r-1 border-gray-300" id="time_table_item">
+            <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
                     土曜日
                 </h3>
+                <Button class="w-10/11" @click="openAddWindow(16)">
+                    追加
+                </Button>
             </div>
-            <div class="min-w-1/5 h-full border-r-1 border-gray-300" id="time_table_item">
+            <div class="min-w-1/5 h-full border-r-1 border-gray-300 text-center" id="time_table_item">
                 <h3 class="border-b-1 border-gray-300 text-xl text-center">
                     日曜日
                 </h3>
+                <Button class="w-10/11" @click="openAddWindow(7)">
+                    追加
+                </Button>
             </div>
         </div>
         <!-- 時間割の追加画面 -->
@@ -93,7 +112,6 @@
                             文字色
                         </label>
                         <Select id="first_color" v-model="firstData[4]">
-                            <option value="setting">設定通り</option>
                             <option value="white">白</option>
                             <option value="black">黒</option>
                         </Select>
@@ -124,14 +142,14 @@
                             <label for="start_time" class="inline-block w-1/6">
                                 開始時刻
                             </label>
-                            <TimeInput id="start_time" v-model="secondData[1]" :disabled="!isAbleAddSecond" />
+                            <TimeInput id="start_time" v-model="firstData[1]" :disabled="!isAbleAddSecond" />
                         </div>
                         <!-- 終了時刻 -->
                         <div class="block h-16">
                             <label for="end_time" class="inline-block w-1/6">
                                 終了時刻
                             </label>
-                            <TimeInput id="end_time" v-model="secondData[2]" :disabled="!isAbleAddSecond" />
+                            <TimeInput id="end_time" v-model="firstData[2]" :disabled="!isAbleAddSecond" />
                         </div>
                         <!-- 背景色を選択 -->
                         <div class="block h-16">
@@ -147,7 +165,6 @@
                                 文字色
                             </label>
                             <Select id="first_color" v-model="secondData[4]" :disabled="!isAbleAddSecond" >
-                                <option value="setting">設定通り</option>
                                 <option value="white">白</option>
                                 <option value="black">黒</option>
                             </Select>
@@ -184,13 +201,14 @@
     import ColorPicker from '../components/parts/ColorPicker.vue'
     import Select from '../components/parts/Select.vue'
     import BigModal from '../components/parts/BigModal.vue'
+    import List from '../components/Pages/TimeTable/List.vue'
 
     //変数を定義
     const view_add = ref()
     const week = ref("")
     const isAbleAddSecond = ref(false)
-    const firstData = ref(["", "", "", "#DC143C", "setting", ""])
-    const secondData = ref(["", "", "", "#DC143C", "setting", ""])
+    const firstData = ref(["", "", "", "#DC143C", "white", ""])
+    const secondData = ref(["", "none", "none", "#DC143C", "white", ""])
     
     //時間割の追加ウィンドウを開く
     const openAddWindow = (day) => {
@@ -206,8 +224,66 @@
     })
 
     //時間割を追加
-    const addTimeTable = () => {
-        console.log(firstData.value)
+    const addTimeTable = async () => {
+        //変数を定義
+        let data = await getTimeTable() || []
+        let newData = {}
+        //一つ目の時間のフォームデータ
+        const first_json = {
+            "name": firstData.value[0],
+            "day": week.value,
+            "time": {
+                "start": firstData.value[1],
+                "end": firstData.value[2]
+            },
+            "bgColor": firstData.value[3],
+            "color" : firstData.value[4],
+            "room": firstData.value[5]
+        }
+        //2つ目の時間のフォームデータ
+        const second_json = {
+            "name": secondData.value[0],
+            "day": week.value,
+            "time": {
+                "start": firstData.value[1],
+                "end": firstData.value[2]
+            },
+            "bgColor": secondData.value[3],
+            "color" : secondData.value[4],
+            "room": secondData.value[5]
+        }
+        //データを生成
+        if(isAbleAddSecond.value == true) {
+            newData = {
+                1: first_json,
+                2: second_json
+            }
+        } else {
+            newData = {
+                1: first_json,
+                2: null
+            }
+        }
+        //データを送信
+        data.push(newData)
+        try {
+            await window.timeTableAPI.setTimeTable(data)
+        } catch(err) {
+            console.log(err)
+        }
+        console.log(getTimeTable())
+        //モーダルを閉じる
+        view_add.value = false
+    }
+
+    //時間割を取得
+    const getTimeTable = async () => {
+        try {
+            const data = await window.timeTableAPI.getTimeTable()
+            return data
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     //ランダムなカラーコード生成
