@@ -28,4 +28,6 @@ contextBridge.exposeInMainWorld('configAPI', {
 contextBridge.exposeInMainWorld('timeTableAPI', {
   getTimeTable: () => ipcRenderer.invoke('getTimeTable'),
   setTimeTable: ( data ) => ipcRenderer.invoke('setTimeTable', data),
+  getHomeTimeTable: () => ipcRenderer.invoke('getHomeTimeTable'),
+  setHomeTimeTable: ( data ) => ipcRenderer.invoke('setHomeTimeTable', data)
 })

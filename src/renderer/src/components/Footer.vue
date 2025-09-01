@@ -6,11 +6,11 @@
                     Home
                 </router-link>
             </li>
-            <li id="footer_menu" :class="onPage == 2 ? 'onPage':'' ">
+            <!--<li id="footer_menu" :class="onPage == 2 ? 'onPage':'' ">
                 <router-link to="/Calendar">
                     Calender
                 </router-link>
-            </li>
+            </li>-->
             <li id="footer_menu" :class="onPage == 3 ? 'onPage':'' ">
                 <router-link to="/TimeTable">
                     TimeTable

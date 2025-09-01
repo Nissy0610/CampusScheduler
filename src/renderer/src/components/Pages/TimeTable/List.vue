@@ -40,6 +40,7 @@
 <script setup>
     //ライブラリ読み込み
     import { ref, onMounted, watch } from 'vue'
+    import { compareAsc, parse } from 'date-fns'
 
     //変数定義
     const listData = ref()
@@ -61,6 +62,7 @@
             let data = await window.timeTableAPI.getTimeTable()
             data = data.filter(item => item[1].day === props.day)
             data = data.filter(item => item["isDelete"] === false)
+            data.sort((a, b) => compareAsc(parse(a[1].time.start, 'HH:mm', new Date()), parse(b[1].time.start, 'HH:mm', new Date())))
             return data
         } catch(err) {
             console.log(err)
