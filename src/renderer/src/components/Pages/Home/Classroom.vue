@@ -37,10 +37,15 @@
 
 <script setup>
     //ライブラリ読み込み
-    import { ref } from 'vue'
+    import { ref, onMounted, watch } from 'vue'
+    import { format, parse, subMinutes } from 'date-fns'
+
+    //ファイル読み込み
+    import Chime from '../../../assets/sound/chime.wav'
 
     //変数の定義
     const showSetting = ref([false, false])
+    const timeFlag = ref([])
 
     //propsの定義
     const props = defineProps({
@@ -48,6 +53,39 @@
             require: true,
         }
     })
+
+    //時間チェック
+    const timeCheck = (clock) => {
+        const now = format(new Date(), 'HH:mm')
+        if(now == clock) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    //チャイム
+    const chime = () => {
+        const audio = new Audio(Chime)
+        audio.play()
+    }
+
+    //onMountedでsetInterval
+    onMounted(() => {
+        setInterval(() => {
+            timeFlag.value[0] = timeCheck(format(subMinutes(parse(props.data[1].time.start, 'HH:mm', new Date()), 2), 'HH:mm'))
+            timeFlag.value[1] = timeCheck(props.data[1].time.start)
+            timeFlag.value[2] = timeCheck(props.data[1].time.end)
+        }, 1000)
+        //console.log(format(subMinutes(parse(props.data[1].time.start, 'HH:mm', new Date()), 2), 'HH:mm'))
+    })
+
+    //watchでチャイム鳴らす
+    watch(timeFlag, (flag) => {
+        if(flag[0] == true || flag[1] == true || flag[2] == true) {
+            chime()
+        }
+    }, { deep: true })
 
     //emitの設定
     const emit = defineEmits(['HomeTimeTableSetting'])

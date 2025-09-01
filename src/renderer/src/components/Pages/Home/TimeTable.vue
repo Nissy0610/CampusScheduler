@@ -77,6 +77,9 @@
     import Classroom from './Classroom.vue'
     import BigModal from '../../parts/BigModal.vue'
 
+    //ファイル読み込み
+    import Chime from '../../../assets/sound/chime.wav'
+
     //変数の設定
     const classroom = ref()
     const isChanged = ref(false)
@@ -149,6 +152,13 @@
     const randomColorCode = () => {
         let n = (Math.random() * 0xfffff * 1000000).toString(16)
         return "#" + n.slice(0, 6)
+    }
+
+    //チャイムテスト
+    const chime = () => {
+        const audio = new Audio(Chime)
+        audio.volume = 1
+        audio.play()
     }
 
     //データの代入と更新

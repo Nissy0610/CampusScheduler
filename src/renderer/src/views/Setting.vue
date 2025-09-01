@@ -10,12 +10,18 @@
     <main class="w-1/2 h-full m-auto">
         <!--設定リスト-->
         <div class="" id="setting_list">
-            <div class="w-100 text-right" id="fontColor">
-                <label for="fontColor" class="">
+            <!--<div class="w-1/2 text-right" id="fontColor">
+                <label for="fontColor" class="w-1/3">
                     文字色
                 </label>
-                <Input name="fontColor" placeholder="文字色" :value="fontColor"/>
-            </div>
+                <Input name="fontColor" placeholder="文字色" width="full" v-model="fontColor.value"/>
+            </div>-->
+            <!--<div class="w-full text-left" id="chime">
+                <label for="chime" class="w-1/3">
+                    チャイム
+                </label>
+                <input type="file" id="chime" accept="audio/mpeg" class="border-1 border-gray-300 w-2/3" />
+            </div>-->
         </div>
         <!--設定ボタン-->
         <div class="text-center " id="setting_button">
